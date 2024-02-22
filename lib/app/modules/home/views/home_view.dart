@@ -1,15 +1,12 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:t/app/controllers/home_controller.dart';
-import 'package:t/app/views/acceuil_view.dart';
-import 'package:t/app/views/inscription_view.dart';
-class HomeView extends StatelessWidget {
-  final HomeController _controller = Get.put(HomeController());
 
-  @override
+import 'package:get/get.dart';
+import 'package:t/app/modules/home/controllers/home_controller.dart';
+
+
+class HomeView extends GetView<HomeController> {
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -38,11 +35,11 @@ class HomeView extends StatelessWidget {
                     labelText: "User Name",
                     hintText: "Enter votre nom ",
                   ),
-                  controller: _controller.usernameController,
+                  controller: controller.usernameController,
                 ),
                 SizedBox(height: 20),
                 TextFormField(
-                  controller: _controller.passwordController,
+                  controller: controller.passwordController,
                   keyboardType: TextInputType.text,
                   obscureText: true,
 
@@ -54,21 +51,21 @@ class HomeView extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: _controller.getImageFromGallery,
+                  onPressed: controller.getImageFromGallery,
                   child: Text('Sélectionner une image'),
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: _controller.getImageFromCamera,
+                  onPressed: controller.getImageFromCamera,
                   child: Text('Ouvrir votre appareil photo'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    if (_controller.usernameController.text.isNotEmpty && _controller.passwordController.text.isNotEmpty) {
+                    if (controller.usernameController.text.isNotEmpty && controller.passwordController.text.isNotEmpty) {
 
-                      _controller.onSubmitRegistrationForm(
-                        _controller.usernameController.text,
-                        _controller.passwordController.text,
+                      controller.onSubmitRegistrationForm(
+                        controller.usernameController.text,
+                        controller.passwordController.text,
                         'email@example.com',
                       );
                     } else {
@@ -84,7 +81,7 @@ class HomeView extends StatelessWidget {
                 SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {
-                    Get.to(InscriptionView());
+                    // Get.to(InscriptionView());
                   },
                   child: Text(
                     'New User? Create Account',
