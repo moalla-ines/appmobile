@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../modules/model_user.dart';
 import '../modules/registrations.dart';
 import '../views/acceuil_view.dart';
 
 class HomeController extends GetxController {
   late TextEditingController usernameController;
   late TextEditingController passwordController;
-
   String? _imagePath;
 
   @override
@@ -33,15 +33,25 @@ class HomeController extends GetxController {
       _imagePath = pickedFile.path;
     }
   }
+  void onSubmitRegistrationForm(String username, String password, String email) {
+    if (username.isNotEmpty && password.isNotEmpty && email.isNotEmpty) {
+      // Créer une instance de User avec les données du formulaire
+      User user = User(username: username, password: password);
 
-  void onSubmit() {
-    if (usernameController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-      // Vous pouvez traiter les données ici ou les passer à un autre composant
-      Get.to(() => AcceuilView(user: user, registrationData: registrationData ,));
+      // Créer une instance de RegistrationData avec les données du formulaire
+      RegistrationData registrationData = RegistrationData(
+        username: username,
+        password: password,
+        email: email,
+      );
+
+      // Passer les données à la vue AcceuilView
+      Get.to(() => AcceuilView(user: user, registrationData: registrationData));
     } else {
       Get.snackbar('Erreur', 'Veuillez remplir tous les champs.');
     }
   }
+
 
   @override
   void onClose() {
@@ -50,16 +60,6 @@ class HomeController extends GetxController {
     super.onClose();
   }
 
-void onSubmitRegistrationForm(String username, String password, String email) {
-  RegistrationData registrationData = RegistrationData(
-    username: username,
-    password: password,
-    email: email,
-  );
-  // Effectuer des actions avec les données d'inscription, par exemple :
-  // - Enregistrer les données dans une base de données
-  // - Envoyer les données à un serveur
-  // - Naviguer vers une autre vue
-  Get.to(AcceuilView(registrationData: registrationData, user: User,));
-}
+
+
 }

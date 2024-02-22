@@ -63,12 +63,24 @@ class HomeView extends StatelessWidget {
                   child: Text('Ouvrir votre appareil photo'),
                 ),
                 ElevatedButton(
-                  onPressed: _controller.onSubmit,
+                  onPressed: () {
+                    if (_controller.usernameController.text.isNotEmpty && _controller.passwordController.text.isNotEmpty) {
+
+                      _controller.onSubmitRegistrationForm(
+                        _controller.usernameController.text,
+                        _controller.passwordController.text,
+                        'email@example.com',
+                      );
+                    } else {
+                      Get.snackbar('Erreur', 'Veuillez remplir tous les champs.');
+                    }
+                  },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.grey),
                   ),
                   child: const Text('envoyer'),
                 ),
+
                 SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {
