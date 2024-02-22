@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:t/app/modules/home/views/acceuil_view.dart';
-import 'package:t/app/modules/home/views/inscription_view.dart';
-import '../modules/home/views/home_view.dart';
+import 'package:t/app/views/acceuil_view.dart';
+import 'package:t/app/views/inscription_view.dart';
+import '../views/home_view.dart';
 
 part 'app_routes.dart';
 

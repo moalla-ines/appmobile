@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:t/app/modules/home/views/home_view.dart';
+import 'package:t/app/views/home_view.dart';
 
 
 void main() {
@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key});
 
   @override
+
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
