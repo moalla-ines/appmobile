@@ -6,6 +6,7 @@ import 'package:t/app/modules/home/controllers/home_controller.dart';
 
 
 class HomeView extends GetView<HomeController> {
+
    @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,11 +1,10 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:t/app/model/model_user.dart';
 import 'package:t/app/model/registrations.dart';
 import 'package:t/app/modules/acceuil/views/acceuil_view.dart';
-import 'package:t/app/views/acceuil_view.dart';
+
 
 
 class HomeController extends GetxController {
@@ -52,7 +51,7 @@ class HomeController extends GetxController {
       );
 
       // Passer les données à la vue AcceuilView
-      Get.to(() => AcceuilView());
+      Get.to(() =>  AcceuilView());
       //user: user, registrationData: registrationData
     } else {
       Get.snackbar('Erreur', 'Veuillez remplir tous les champs.');

@@ -4,6 +4,8 @@ import '../modules/acceuil/bindings/acceuil_binding.dart';
 import '../modules/acceuil/views/acceuil_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/test/bindings/test_binding.dart';
+import '../modules/test/views/test_view.dart';
 
 part 'app_routes.dart';
 
@@ -18,8 +20,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ACCEUIL,
-      page: () =>   AcceuilView(),
+      page: () => AcceuilView(),
       binding: AcceuilBinding(),
+    ),
+    GetPage(
+      name: _Paths.TEST,
+      page: () => const TestView(),
+      binding: TestBinding(),
     ),
   ];
 
