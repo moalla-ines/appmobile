@@ -41,6 +41,25 @@ class ListViewPage extends GetView<AcceuilController> {
               child : Text('event 3')
           ),
         ],
+
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: controller.selectedIndex.value,
+        onTap: controller.onItemTapped,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.event),
+            label: 'List',
+          ),
+        ],
       ),
     );
   }

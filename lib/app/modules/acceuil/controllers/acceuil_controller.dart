@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t/app/model/model_user.dart';
 import 'package:t/app/model/setting_model.dart';
 import 'package:t/app/modules/acceuil/views/acceuil_view.dart';
+import 'package:t/app/modules/acceuil/views/list.dart';
 import 'package:t/app/modules/acceuil/views/settings.dart';
 
 class AcceuilController extends GetxController {
   // Variables observables
   var user = User().obs;
-  RxInt selectedIndex = 0.obs;
+  var selectedIndex = 0.obs;
   var settings = SettingsModel(fingerprintEnabled: false).obs;
 
   void toggleFingerprint(bool value) {
@@ -17,7 +17,8 @@ class AcceuilController extends GetxController {
     });
   }
 
-  void _onItemTapped(int index) {
+  void onItemTapped(int index) {
+    selectedIndex.value = index;
     switch (index) {
       case 0:
         Get.to(() => SettingsView());
@@ -26,7 +27,7 @@ class AcceuilController extends GetxController {
         Get.to(() => AcceuilView());
         break;
       case 2:
-        Get.to(() => ListView());
+        Get.to(() => ListViewPage());
         break;
     }
   }
