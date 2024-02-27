@@ -44,6 +44,8 @@ dependencies:
   retrofit: ^4.1.0
   dio: ^5.4.1
   http_client: ^1.5.2
+  flutter_settings_ui: ^3.0.0
+  settings_ui: ^2.0.2
 
 
 dev_dependencies:

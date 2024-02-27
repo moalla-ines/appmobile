@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:t/app/modules/home/views/home_view.dart';
+import 'package:t/app/modules/acceuil/controllers/acceuil_controller.dart';
+
 import 'package:t/app/routes/app_pages.dart';
 
 
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
 
   Widget build(BuildContext context) {
+    Get.put(AcceuilController());
     return GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,

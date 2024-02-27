@@ -2,17 +2,25 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t/app/model/model_user.dart';
-
 import 'package:t/app/modules/acceuil/controllers/acceuil_controller.dart';
 
+
+
 class AcceuilView extends GetView<AcceuilController> {
+
   AcceuilView({Key? key}) : super(key: key);
-  @override
+
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    controller.selectedIndex.value = index;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text('Home'),
         backgroundColor: Colors.blueAccent,
       ),
       drawer: Drawer(),
@@ -49,6 +57,24 @@ class AcceuilView extends GetView<AcceuilController> {
             }),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.event),
+            label: 'List',
+          ),
+        ],
       ),
     );
   }

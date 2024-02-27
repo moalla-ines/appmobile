@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:t/app/modules/acceuil/views/list.dart';
+import 'package:t/app/modules/acceuil/views/settings.dart';
 
 import '../modules/acceuil/bindings/acceuil_binding.dart';
 import '../modules/acceuil/views/acceuil_view.dart';
@@ -24,11 +26,19 @@ class AppPages {
       binding: AcceuilBinding(),
     ),
     GetPage(
+      name: _Paths.ACCEUIL,
+      page: () => ListViewPage(),
+    ),
+    GetPage(
+      name: _Paths.ACCEUIL,
+      page: () => SettingsView(),
+    ),
+    GetPage(
       name: _Paths.TEST,
       page: () => const TestView(),
       binding: TestBinding(),
     ),
   ];
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.ACCEUIL;
 }
