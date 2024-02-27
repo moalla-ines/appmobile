@@ -1,5 +1,6 @@
 class SettingsModel {
-  bool fingerprintEnabled;
+  bool darkTheme = false;
+  bool notificationsEnabled = true;
 
-  SettingsModel({required this.fingerprintEnabled});
+// Ajoutez d'autres paramètres et méthodes nécessaires
 }

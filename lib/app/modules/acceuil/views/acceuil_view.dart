@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:t/app/modules/acceuil/controllers/acceuil_controller.dart';
 
 class AcceuilView extends GetView<AcceuilController> {
@@ -11,7 +12,7 @@ class AcceuilView extends GetView<AcceuilController> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.blue,
       ),
       body: Container(
         padding: EdgeInsets.all(10),
@@ -47,24 +48,22 @@ class AcceuilView extends GetView<AcceuilController> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: controller.selectedIndex.value,
-        onTap: controller.onItemTapped,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.event),
-            label: 'List',
-          ),
+      bottomNavigationBar: GNav(
+        backgroundColor: Colors.black,
+        color: Colors.white,
+        activeColor: Colors.white,
+        tabBackgroundColor: Colors.grey.shade800,
+        padding: EdgeInsets.all(20),
+        gap: 8,
+        selectedIndex: controller.selectedIndex.value,
+        onTabChange: controller.onItemTapped,
+        tabs: [
+          GButton(icon: Icons.settings, text: 'Settings'),
+          GButton(icon: Icons.home, text: 'Home'),
+          GButton(icon: Icons.list, text: 'List'),
         ],
       ),
+
     );
   }
 }
