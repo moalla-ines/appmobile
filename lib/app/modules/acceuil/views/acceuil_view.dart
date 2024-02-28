@@ -10,14 +10,16 @@ class AcceuilView extends GetView<AcceuilController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue.shade200,
       appBar: AppBar(
         title: Text('Home'),
         backgroundColor: Colors.blue,
       ),
       body: Container(
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.all(10),
-        color: Colors.white,
+
+        padding: EdgeInsets.all(50),
+        margin: EdgeInsets.all(30),
+        color: Colors.blue.shade50,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -49,10 +51,10 @@ class AcceuilView extends GetView<AcceuilController> {
         ),
       ),
       bottomNavigationBar: GNav(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.blue,
         color: Colors.white,
-        activeColor: Colors.white,
-        tabBackgroundColor: Colors.grey.shade800,
+        activeColor: Colors.black,
+        tabBackgroundColor: Colors.grey.shade50,
         padding: EdgeInsets.all(20),
         gap: 8,
         selectedIndex: controller.selectedIndex.value,

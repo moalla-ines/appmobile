@@ -9,36 +9,15 @@ class AcceuilController extends GetxController {
   // Observables
   var user = User().obs;
   var selectedIndex = 0.obs;
-  var settings = SettingsModel().obs;
-  var valNotify1 = true.obs;
-  var valNotify2 = false.obs;
-  var valNotify3 = false.obs;
 
-  // Gestion des paramètres de réglage
-  void toggleDarkTheme(bool value) {
-    settings.update((val) {
-      val!.darkTheme = value;
-    });
+
+  bool receivedOfferNotification = true;
+
+  void toggleReceivedOfferNotification(bool value) {
+    receivedOfferNotification = value;
+    update();
   }
 
-  void toggleNotifications(bool value) {
-    settings.update((val) {
-      val!.notificationsEnabled = value;
-    });
-  }
-
-  // Méthodes pour les notifications
-  void onChangeFunction1(bool newValue1) {
-    valNotify1.value = newValue1;
-  }
-
-  void onChangeFunction2(bool newValue2) {
-    valNotify2.value = newValue2;
-  }
-
-  void onChangeFunction3(bool newValue3) {
-    valNotify3.value = newValue3;
-  }
 
   // Navigation
   void onItemTapped(int index) {

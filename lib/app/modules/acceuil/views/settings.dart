@@ -9,12 +9,12 @@ class SettingsView extends GetView<AcceuilController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue.shade100,
+      backgroundColor: Colors.blue.shade50,
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
           "Settings",
-          style: TextStyle(fontSize: 22),
+          style: TextStyle(fontSize: 22 , color: Colors.white),
         ),
         leading: IconButton(
           onPressed: () {},
@@ -71,9 +71,34 @@ class SettingsView extends GetView<AcceuilController> {
                         title: Text("Change Language"),
                         trailing: Icon(Icons.keyboard_arrow_right),
                         onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text("Choisir la langue"),
+                                content: Column(
 
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text("Francais"),
+                                    Text("Anglais"),
+                                    Text("Arabe"),
+                                  ],
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text("Fermer"),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
                         },
                       ),
+
                       _buildDivider(),
                       ListTile(
                         leading: Icon(Icons.location_pin, color: Colors.blue),
@@ -84,10 +109,17 @@ class SettingsView extends GetView<AcceuilController> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10.0),
-                Text("Notification Settings",style: TextStyle(fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                Card(
+                  color: Colors.blue,
+                  child: ListTile(
+                    onTap: () {},
+                    title: Text(
+                      "Notification Settings",
+                      style: TextStyle(fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
                 ),
                 SwitchListTile(
 

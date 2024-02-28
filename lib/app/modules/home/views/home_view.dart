@@ -10,8 +10,9 @@ class HomeView extends GetView<HomeController> {
    @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue.shade50,
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.blue.shade200,
 
       ),
       drawer: Drawer(),
@@ -26,7 +27,8 @@ class HomeView extends GetView<HomeController> {
                   "Login",
                   style: TextStyle(
                     fontSize: 50.0,
-                    color: Colors.blue,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 SizedBox(height: 20),
