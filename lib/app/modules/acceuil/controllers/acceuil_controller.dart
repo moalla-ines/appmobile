@@ -6,6 +6,7 @@ import 'package:t/app/modules/acceuil/views/list.dart';
 import 'package:t/app/modules/acceuil/views/settings.dart';
 
 class AcceuilController extends GetxController {
+  // Observables
   var user = User().obs;
   var selectedIndex = 0.obs;
   var settings = SettingsModel().obs;
@@ -26,7 +27,7 @@ class AcceuilController extends GetxController {
     });
   }
 
-
+  // Méthodes pour les notifications
   void onChangeFunction1(bool newValue1) {
     valNotify1.value = newValue1;
   }
@@ -55,6 +56,7 @@ class AcceuilController extends GetxController {
     }
   }
 
+  // Met à jour les informations de l'utilisateur
   void updateUser(String username, String password, String imagePath) {
     user.update((val) {
       val!.username = username;

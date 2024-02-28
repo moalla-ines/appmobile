@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 import 'package:get/get.dart';
 import 'package:t/app/modules/acceuil/controllers/acceuil_controller.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+
 class SettingsView extends GetView<AcceuilController> {
-  SettingsView({Key? key}) : super(key: key);
+ SettingsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,46 +24,65 @@ class SettingsView extends GetView<AcceuilController> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(10),
-        child: ListView(
-          children: [
-            SizedBox(height: 40),
-            Row(
-              children: [
-                Icon(
-                  Icons.person,
-                  color: Colors.blue,
-                ),
-                SizedBox(width: 10),
-                Text(
-                  "Account",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                ),
-              ],
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height -
+              MediaQuery.of(context).padding.top -
+              MediaQuery.of(context).padding.bottom -
+              kToolbarHeight -
+              kBottomNavigationBarHeight,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.person,
+                          color: Colors.blue,
+                        ),
+                        SizedBox(width: 5),
+                        Text(
+                          "Account",
+                          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Divider(height: 20, thickness: 1),
+                  SizedBox(height: 20),
+                  buildAccountOption(context, "Change Password"),
+                  buildAccountOption(context, "Content Settings"),
+                  buildAccountOption(context, "Social"),
+                  buildAccountOption(context, "Language"),
+                  buildAccountOption(context, "Privacy and Security "),
+                  SizedBox(height: 40), // Ajout d'un espace entre les sections
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: Row(
+                      children: [
+                        Icon(Icons.volume_up_outlined, color: Colors.blue),
+                        SizedBox(width: 10),
+                        Text("Notifications",
+                            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                  ),
+                  Divider(height: 20, thickness: 1),
+                  SizedBox(height: 20),
+                  buildNotificationOption(
+                      "theme Dark", controller.valNotify1.value, controller.onChangeFunction1),
+                  buildNotificationOption(
+                      "Notification 2", controller.valNotify2.value, controller.onChangeFunction2),
+                  buildNotificationOption(
+                      "Notification 3", controller.valNotify3.value, controller.onChangeFunction3),
+                ],
+              ),
             ),
-            Divider(height: 20, thickness: 1),
-            SizedBox(height: 10),
-            buildAccountOption(context, "Change Password"),
-            buildAccountOption(context, "Content Settings"),
-            buildAccountOption(context, "Social"),
-            buildAccountOption(context, "Language"),
-            buildAccountOption(context, "Privacy and Security "),
-            SizedBox(height: 40),
-            Row(
-              children: [
-                Icon(Icons.volume_up_outlined, color: Colors.blue),
-                SizedBox(width: 10),
-                Text("Notifications",
-                    style:
-                    TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-              ],
-            ),
-            Divider(height: 20, thickness: 1),
-            SizedBox(height: 10),
-            buildNotificationOption("theme Dark", controller.valNotify1.value, controller.onChangeFunction1),
-            buildNotificationOption("Notification 2", controller.valNotify2.value, controller.onChangeFunction2),
-            buildNotificationOption("Notification 3", controller.valNotify3.value, controller.onChangeFunction3),
-          ],
+          ),
         ),
       ),
       bottomNavigationBar: GNav(
@@ -85,8 +103,7 @@ class SettingsView extends GetView<AcceuilController> {
     );
   }
 
-  Padding buildNotificationOption(
-      String title, bool value, Function onChangeMethod) {
+ Padding buildNotificationOption(String title, bool value, Function onChangeMethod) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
       child: Row(
@@ -102,12 +119,13 @@ class SettingsView extends GetView<AcceuilController> {
           ),
           Transform.scale(
             scale: 0.7,
-            child: CupertinoSwitch(
+            child: Switch(
               activeColor: Colors.blue,
-              trackColor: Colors.grey,
               value: value,
-              onChanged: (bool newValue) {
-                onChangeMethod(newValue);
+              onChanged: (bool? newValue) {
+                if (newValue != null) {
+                  onChangeMethod(newValue);
+                }
               },
             ),
           )
@@ -127,10 +145,9 @@ class SettingsView extends GetView<AcceuilController> {
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text("option 1"),
-                  Text("option 2"),
-                  Text("option 3"),
-                  Text("option 4"),
+                  Text("Modifier le mot de passe"),
+                  Text("Gérer les notifications"),
+                  Text("Déconnexion"),
                 ],
               ),
               actions: [
@@ -138,12 +155,13 @@ class SettingsView extends GetView<AcceuilController> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text("Action"),
+                  child: Text("Fermer"),
                 ),
               ],
             );
           },
         );
-      }, // Ajout de la parenthèse fermante ici
+      },
     );
   }
+}
