@@ -9,7 +9,7 @@ class SettingsView extends GetView<AcceuilController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: Colors.blue.shade100,
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
@@ -36,7 +36,9 @@ class SettingsView extends GetView<AcceuilController> {
                 },
                 title: Text(
                   "Account",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold,color: Colors.white),
+                  style: TextStyle(fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
                 trailing: Icon(
                   Icons.person,
@@ -46,69 +48,77 @@ class SettingsView extends GetView<AcceuilController> {
             ),
             const SizedBox(height: 10.0),
             Card(
-              margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+              margin: const EdgeInsets.symmetric(
+                  vertical: 8.0, horizontal: 8.0),
               child: Column(
                 children: <Widget>[
                   ListTile(
-                    leading: Icon(Icons.lock_clock_outlined,color :Colors.blue),
-                 title: Text("Change Password"),
+                    leading: Icon(
+                        Icons.lock_clock_outlined, color: Colors.blue),
+                    title: Text("Change Password"),
                     trailing: Icon(Icons.keyboard_arrow_right),
-                    onTap: (){
+                    onTap: () {
 
                     },
                   ),
+
+                  _buildDivider(),
                   ListTile(
-                    leading: Icon(Icons.language,color :Colors.blue),
+                    leading: Icon(Icons.language, color: Colors.blue),
                     title: Text("Change Language"),
                     trailing: Icon(Icons.keyboard_arrow_right),
-                    onTap: (){
+                    onTap: () {
 
                     },
                   ),
+                  _buildDivider(),
                   ListTile(
-                    leading: Icon(Icons.location_pin,color :Colors.blue),
+                    leading: Icon(Icons.location_pin, color: Colors.blue),
                     title: Text("Change Location "),
                     trailing: Icon(Icons.keyboard_arrow_right),
-                    onTap: (){
-
-                    },
+                    onTap: () {},
                   ),
                 ],
               ),
-            )
+            ),
+            const SizedBox(height: 10.0),
+            Text("Notification Settings",style: TextStyle(fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.white),
+            ),
+            SwitchListTile(
+
+              activeColor: Colors.blue,
+              contentPadding: const EdgeInsets.all(5),
+                value: true,
+                title: Text("Recieved Notification"),
+              onChanged: (val){},),
+            SwitchListTile(
+              activeColor: Colors.blue,
+              contentPadding: const EdgeInsets.all(5),
+              value: true,
+              title: Text("Recieved offer Notification"),
+              onChanged: (val){},),
+            SwitchListTile(
+              activeColor: Colors.blue,
+              contentPadding: const EdgeInsets.all(5),
+              value: false,
+              title: Text("Recieved Newsletter"),
+              onChanged: (val){},),
+            SwitchListTile(
+              activeColor: Colors.blue,
+              contentPadding: const EdgeInsets.all(5),
+              value: false,
+              title: Text("Recieved App Updates"),
+              onChanged: (val){},),
           ],
         ),
       ),
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       bottomNavigationBar: GNav(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.blue,
         color: Colors.white,
-        activeColor: Colors.white,
-        tabBackgroundColor: Colors.grey.shade800,
+        activeColor: Colors.black,
+        tabBackgroundColor: Colors.grey.shade50,
         padding: EdgeInsets.all(20),
         gap: 8,
         selectedIndex: controller.selectedIndex.value,
@@ -122,4 +132,31 @@ class SettingsView extends GetView<AcceuilController> {
     );
   }
 
+  Container _buildDivider() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 8.0),
+      width: double.infinity,
+      height: 1.0,
+      color: Colors.grey.shade200,
+    );
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
