@@ -28,21 +28,21 @@ class AcceuilView extends GetView<AcceuilController> {
                 Obx(() {
                   return Text(
                     'Username: ${controller.user.value.username}',
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 18 ,fontWeight: FontWeight.w500, color: Colors.blue),
                   );
                 }),
                 Obx(() {
                   return Text(
                     'Password: ${controller.user.value.password}',
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontSize: 18 ,fontWeight: FontWeight.w500, color: Colors.blue),
                   );
                 }),
                 Obx(() {
                   if (controller.user.value.imagePath != null) {
                     return Image.file(
                       File(controller.user.value.imagePath!),
-                      width: 100,
-                      height: 100,
+                      width: 200,
+                      height: 200,
                       fit: BoxFit.cover,
                     );
                   } else {
