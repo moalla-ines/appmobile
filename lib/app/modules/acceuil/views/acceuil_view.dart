@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:t/app/modules/acceuil/controllers/acceuil_controller.dart';
+import 'package:t/app/modules/home/views/home_view.dart';
 
 class AcceuilView extends GetView<AcceuilController> {
   AcceuilView({Key? key}) : super(key: key);
@@ -15,40 +16,90 @@ class AcceuilView extends GetView<AcceuilController> {
         title: Text('Home'),
         backgroundColor: Colors.blue,
       ),
-      body: Container(
+      body: Stack(
+        children: [
+          Container(
+            padding: EdgeInsets.all(50),
+            margin: EdgeInsets.all(30),
+            color: Colors.blue.shade50,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Obx(() {
+                  return Text(
+                    'Username: ${controller.user.value.username}',
+                    style: TextStyle(fontSize: 20),
+                  );
+                }),
+                Obx(() {
+                  return Text(
+                    'Password: ${controller.user.value.password}',
+                    style: TextStyle(fontSize: 20),
+                  );
+                }),
+                Obx(() {
+                  if (controller.user.value.imagePath != null) {
+                    return Image.file(
+                      File(controller.user.value.imagePath!),
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    );
+                  } else {
+                    return Container();
+                  }
+                }),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: -20,
+            right: -20,
+            child: Container(
+              width: 70,
+              height: 70,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Colors.blue.shade100,
+                shape: BoxShape.circle,
+              ),
+              child: IconButton(
+                icon: Icon(Icons.power_settings_new_outlined, color: Colors.white),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        backgroundColor: Colors.grey,
+                        title: Text("Voulez-vous vraiment  déconnecter ?"),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
 
-        padding: EdgeInsets.all(50),
-        margin: EdgeInsets.all(30),
-        color: Colors.blue.shade50,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Obx(() {
-              return Text(
-                'Username: ${controller.user.value.username}',
-                style: TextStyle(fontSize: 20),
-              );
-            }),
-            Obx(() {
-              return Text(
-                'Password: ${controller.user.value.password}',
-                style: TextStyle(fontSize: 20),
-              );
-            }),
-            Obx(() {
-              if (controller.user.value.imagePath != null) {
-                return Image.file(
-                  File(controller.user.value.imagePath!),
-                  width: 100,
-                  height: 100,
-                  fit: BoxFit.cover,
-                );
-              } else {
-                return Container();
-              }
-            }),
-          ],
-        ),
+                          ],
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text("Fermer"),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Get.to(() => HomeView());
+                            },
+                            child: Text("oui"),
+                          ),
+                          ],
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: GNav(
         backgroundColor: Colors.blue,
@@ -65,7 +116,6 @@ class AcceuilView extends GetView<AcceuilController> {
           GButton(icon: Icons.list, text: 'List'),
         ],
       ),
-
     );
   }
 }

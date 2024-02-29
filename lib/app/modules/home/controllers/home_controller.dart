@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:t/app/model/model_user.dart';
 import 'package:t/app/model/registrations.dart';
+import 'package:t/app/modules/acceuil/controllers/acceuil_controller.dart';
 import 'package:t/app/modules/acceuil/views/acceuil_view.dart';
 
 
@@ -38,6 +39,12 @@ class HomeController extends GetxController {
       imagePath = pickedFile.path;
     }
   }
+  void navigateToAcceuilView(String username, String password, String imagePath) {
+    Get.find<AcceuilController>().updateUser(username, password, imagePath);
+    Get.to(() => AcceuilView());
+  }
+
+
   void onSubmitRegistrationForm(String username, String password, String email) {
     if (username.isNotEmpty && password.isNotEmpty && email.isNotEmpty) {
       // Créer une instance de User avec les données du formulaire
@@ -51,7 +58,7 @@ class HomeController extends GetxController {
       );
 
       // Passer les données à la vue AcceuilView
-      Get.to(() =>  AcceuilView());
+      navigateToAcceuilView(username, password, imagePath ?? '');
       //user: user, registrationData: registrationData
     } else {
       Get.snackbar('Erreur', 'Veuillez remplir tous les champs.');
