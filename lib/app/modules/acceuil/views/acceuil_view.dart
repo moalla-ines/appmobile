@@ -19,9 +19,9 @@ class AcceuilView extends GetView<AcceuilController> {
       body: Stack(
         children: [
           Container(
-            padding: EdgeInsets.all(50),
-            margin: EdgeInsets.all(30),
-            color: Colors.blue.shade50,
+            padding: EdgeInsets.all(110),
+            margin: EdgeInsets.all(10),
+            color: Colors.blue.shade100,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

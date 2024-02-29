@@ -43,4 +43,4 @@ class AcceuilController extends GetxController {
       val.imagePath = imagePath;
     });
   }
-
+}
