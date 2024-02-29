@@ -21,7 +21,7 @@ class AcceuilView extends GetView<AcceuilController> {
           Container(
             padding: EdgeInsets.all(110),
             margin: EdgeInsets.all(10),
-            color: Colors.blue.shade100,
+            color: Colors.blue.shade50,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -56,11 +56,11 @@ class AcceuilView extends GetView<AcceuilController> {
             bottom: -20,
             right: -20,
             child: Container(
-              width: 70,
-              height: 70,
+              width: 60,
+              height: 60,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.blue.shade100,
+                color: Colors.blue.shade200,
                 shape: BoxShape.circle,
               ),
               child: IconButton(
@@ -70,7 +70,7 @@ class AcceuilView extends GetView<AcceuilController> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        backgroundColor: Colors.grey,
+                        backgroundColor: Colors.grey.shade50,
                         title: Text("Voulez-vous vraiment  déconnecter ?"),
                         content: Column(
                           mainAxisSize: MainAxisSize.min,
