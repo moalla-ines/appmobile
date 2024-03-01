@@ -10,9 +10,9 @@ class ListViewPage extends GetView<AcceuilController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue.shade200,
+      backgroundColor: Colors.blue.shade100,
       appBar: AppBar(
-        title: Text('List'),
+        title: Text('List',style: TextStyle(color:Colors.white,),),
         backgroundColor: Colors.blue,
       ),
       body: ListView(
@@ -48,18 +48,18 @@ class ListViewPage extends GetView<AcceuilController> {
     return ExpansionTile(
       title: Text(
         title,
-        style: TextStyle(fontSize: 22, color: Colors.white),
+        style: TextStyle(fontSize: 22, color: Colors.black,fontWeight: FontWeight.w500),
       ),
       backgroundColor: color,
       children: [
         ListTile(
-          title: Text("choisir niveau 1"),
+          title: Text("choisir niveau 1", style: TextStyle(color:Colors.white,),),
         ),
         ListTile(
-          title: Text("choisir niveau 2"),
+          title: Text("choisir niveau 2", style: TextStyle(color:Colors.white,),),
         ),
         ListTile(
-          title: Text("choisir niveau 3"),
+          title: Text("choisir niveau 3", style: TextStyle(color:Colors.white,),),
         ),
       ],
     );
