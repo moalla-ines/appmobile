@@ -51,8 +51,7 @@ class HomeView extends GetView<HomeController> {
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: "Password",
-                    hintText: "Enter votre mot de passe ",
-
+                    hintText: "Enter votre mot de passe "
                   ),
                 ),
                 SizedBox(height: 20),

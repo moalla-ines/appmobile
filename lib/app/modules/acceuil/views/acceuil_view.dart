@@ -1,12 +1,18 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:t/app/modules/acceuil/controllers/acceuil_controller.dart';
 import 'package:t/app/modules/home/views/home_view.dart';
+import 'package:http/http.dart' as http;
+import '../../../model/Article.dart';
 
 class AcceuilView extends GetView<AcceuilController> {
+
   AcceuilView({Key? key}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
