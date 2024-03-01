@@ -66,39 +66,8 @@ class SettingsView extends GetView<AcceuilController> {
                         },
                       ),
 
-                      _buildDivider(),
-                      ListTile(
-                        leading: Icon(Icons.language, color: Colors.blue),
-                        title: Text("Change Language"),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text("Choisir la langue"),
-                                content: Column(
-
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text("Francais"),
-                                    Text("Anglais"),
-                                    Text("Arabe"),
-                                  ],
-                                ),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text("Fermer"),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
-                      ),
+                      _buildExpansionTile(context, "Change Language",
+                          Colors.blue.shade100),
 
                       _buildDivider(),
                       ListTile(
@@ -217,12 +186,34 @@ class SettingsView extends GetView<AcceuilController> {
     );
   }
 
+
   Container _buildDivider() {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8.0),
       width: double.infinity,
       height: 1.0,
       color: Colors.grey.shade200,
+    );
+  }
+
+  Widget _buildExpansionTile(BuildContext context, String title, Color color) {
+    return ExpansionTile(
+      title: Text(
+        title,
+        style: TextStyle(fontSize: 20, color: Colors.black),
+      ),
+      backgroundColor: color,
+      children: [
+        ListTile(
+          title: Text("Francais", style: TextStyle(color:Colors.white,fontWeight: FontWeight.w500),),
+        ),
+        ListTile(
+          title: Text("Anglais", style: TextStyle(color:Colors.white,fontWeight: FontWeight.w500),),
+        ),
+        ListTile(
+          title: Text("Arabe", style: TextStyle(color:Colors.white,fontWeight: FontWeight.w500),),
+        ),
+      ],
     );
   }
 }
