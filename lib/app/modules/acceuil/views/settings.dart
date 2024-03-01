@@ -200,7 +200,7 @@ class SettingsView extends GetView<AcceuilController> {
     return ExpansionTile(
       title: Text(
         title,
-        style: TextStyle(fontSize: 20, color: Colors.black),
+        style: TextStyle(fontSize: 18, color: Colors.black),
       ),
       backgroundColor: color,
       children: [
