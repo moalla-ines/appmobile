@@ -13,7 +13,7 @@ class AcceuilView extends GetView<AcceuilController> {
     return Scaffold(
       backgroundColor: Colors.blue.shade200,
       appBar: AppBar(
-        title: Text('Home'),
+        title: Text('Home',style: TextStyle(color:Colors.white,),),
         backgroundColor: Colors.blue,
       ),
       body: Stack(

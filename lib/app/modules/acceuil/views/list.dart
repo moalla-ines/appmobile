@@ -10,7 +10,7 @@ class ListViewPage extends GetView<AcceuilController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue.shade100,
+      backgroundColor: Colors.blue.shade50,
       appBar: AppBar(
         title: Text('List',style: TextStyle(color:Colors.white,),),
         backgroundColor: Colors.blue,

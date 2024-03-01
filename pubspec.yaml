@@ -47,6 +47,7 @@ dependencies:
   flutter_settings_ui: ^3.0.0
   settings_ui: ^2.0.2
   google_nav_bar: ^5.0.6
+  popover: ^0.3.0
 settings: ^1.0.0
 
 dev_dependencies:
