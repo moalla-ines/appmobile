@@ -20,6 +20,7 @@ class AppPages {
       page: () => HomeView(),
       binding: HomeBinding(),
     ),
+    
     GetPage(
       name: _Paths.ACCEUIL,
       page: () => AcceuilView(),

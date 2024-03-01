@@ -13,6 +13,11 @@ class HomeController extends GetxController {
   late TextEditingController passwordController;
   String? imagePath;
 
+
+
+
+
+
   @override
   void onInit() {
     super.onInit();
