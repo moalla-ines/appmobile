@@ -52,6 +52,7 @@ class HomeView extends GetView<HomeController> {
                     border: OutlineInputBorder(),
                     labelText: "Password",
                     hintText: "Enter votre mot de passe ",
+
                   ),
                 ),
                 SizedBox(height: 20),

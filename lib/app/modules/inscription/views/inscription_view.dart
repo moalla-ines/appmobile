@@ -30,7 +30,7 @@ class InscriptionView extends GetView<InscriptionController> {
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height:5),
             TextFormField(
               controller: controller.usernameController,
               decoration: InputDecoration(
@@ -45,8 +45,10 @@ class InscriptionView extends GetView<InscriptionController> {
                 return null;
               },
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 5),
+
             TextFormField(
+
               controller: controller.passwordController,
               keyboardType: TextInputType.text,
               obscureText: true,
@@ -64,7 +66,7 @@ class InscriptionView extends GetView<InscriptionController> {
                 return null;
               },
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 5),
             TextFormField(
               controller: controller.confirmPasswordController,
               keyboardType: TextInputType.text,
@@ -83,7 +85,7 @@ class InscriptionView extends GetView<InscriptionController> {
                 return null;
               },
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 5),
             TextFormField(
               controller: controller.emailController,
               decoration: InputDecoration(
@@ -100,7 +102,7 @@ class InscriptionView extends GetView<InscriptionController> {
                 return null;
               },
             ),
-                SizedBox(height: 10),
+                SizedBox(height: 5),
                 ElevatedButton(
                   onPressed: controller.onSubmitRegistrationForm,
                   style: ButtonStyle(
