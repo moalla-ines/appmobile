@@ -52,53 +52,7 @@ class AcceuilView extends GetView<AcceuilController> {
               ],
             ),
           ),
-          Positioned(
-            bottom: -20,
-            right: -20,
-            child: Container(
-              width: 60,
-              height: 60,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.blue.shade200,
-                shape: BoxShape.circle,
-              ),
-              child: IconButton(
-                icon: Icon(Icons.power_settings_new_outlined, color: Colors.white),
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        backgroundColor: Colors.grey.shade50,
-                        title: Text("Voulez-vous vraiment  déconnecter ?"),
-                        content: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
 
-                          ],
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Text("Fermer"),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Get.to(() => HomeView());
-                            },
-                            child: Text("oui"),
-                          ),
-                          ],
-                      );
-                    },
-                  );
-                },
-              ),
-            ),
-          ),
         ],
       ),
       bottomNavigationBar: GNav(

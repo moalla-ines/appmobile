@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:t/app/modules/home/controllers/home_controller.dart';
+import 'package:t/app/modules/inscription/views/inscription_view.dart';
 
 
 
@@ -13,10 +14,10 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       backgroundColor: Colors.blue.shade50,
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade200,
+        backgroundColor: Colors.blue,
 
       ),
-      drawer: Drawer(),
+
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(10),
@@ -85,7 +86,7 @@ class HomeView extends GetView<HomeController> {
                 SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {
-                    // Get.to(InscriptionView());
+                     Get.to(InscriptionView());
                   },
                   child: Text(
                     'New User? Create Account',

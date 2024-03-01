@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t/app/modules/acceuil/controllers/acceuil_controller.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:t/app/modules/home/views/home_view.dart';
 
 class SettingsView extends GetView<AcceuilController> {
   SettingsView({Key? key}) : super(key: key);
@@ -150,23 +151,52 @@ class SettingsView extends GetView<AcceuilController> {
             ),
           ),
           Positioned(
-              bottom: -20,
-          right: -20,
-          child: Container(
-            width: 80,
-            height: 80,
-alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              shape: BoxShape.circle,
-            ),
-            child:IconButton(
-            icon:Icon(Icons.power_settings_new_outlined,color: Colors.white),
-              onPressed: () {  },
-          ),
-          ),
-          )
+            bottom: -20,
+            right: -20,
+            child: Container(
+              width: 60,
+              height: 60,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Colors.blue.shade200,
+                shape: BoxShape.circle,
+              ),
+              child: IconButton(
+                icon: Icon(Icons.power_settings_new_outlined, color: Colors.white),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        backgroundColor: Colors.grey.shade50,
+                        title: Text("Voulez-vous vraiment  déconnecter ?"),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
 
+                          ],
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text("Fermer"),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Get.to(() => HomeView());
+                            },
+                            child: Text("oui"),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: GNav(
