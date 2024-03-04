@@ -7,19 +7,20 @@ import 'package:t/app/modules/acceuil/controllers/acceuil_controller.dart';
 import 'package:t/app/modules/home/views/home_view.dart';
 import 'package:http/http.dart' as http;
 import '../../../model/Article.dart';
-
 class AcceuilView extends GetView<AcceuilController> {
-
   AcceuilView({Key? key}) : super(key: key);
-
-
-
+  var firstAuthor = ''.obs;// permet à firstAuthor d'être utilisée de manière réactive
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue.shade200,
       appBar: AppBar(
-        title: Text('Home',style: TextStyle(color:Colors.white,),),
+        title: Text(
+          'Home',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         backgroundColor: Colors.blue,
       ),
       body: Stack(
@@ -34,15 +35,36 @@ class AcceuilView extends GetView<AcceuilController> {
                 Obx(() {
                   return Text(
                     'Username: ${controller.user.value.username}',
-                    style: TextStyle(fontSize: 18 ,fontWeight: FontWeight.w500, color: Colors.blue),
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.blue),
                   );
                 }),
                 Obx(() {
                   return Text(
                     'Password: ${controller.user.value.password}',
-                    style: TextStyle(fontSize: 18 ,fontWeight: FontWeight.w500, color: Colors.blue),
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.blue),
                   );
                 }),
+                Obx(() { // mettre à jour automatiquement l'interface
+                  return Text(
+                    'Author: ${controller.firstAuthor}',//Lorsque firstAuthor change, le widget Text est reconstruit avec la nouvelle valeur,
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: const Color.fromARGB(255, 243, 33, 33)),
+                  );
+                }),
+                ElevatedButton(
+                  onPressed: () {
+                    controller.changeAuthor();
+                  },
+                  child: Text('Changer d\'auteur'),
+                ),
                 Obx(() {
                   if (controller.user.value.imagePath != null) {
                     return Image.file(
@@ -58,7 +80,6 @@ class AcceuilView extends GetView<AcceuilController> {
               ],
             ),
           ),
-
         ],
       ),
       bottomNavigationBar: GNav(

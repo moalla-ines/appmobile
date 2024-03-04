@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:t/app/model/model_user.dart';
+import 'package:t/app/model/services.dart';
 import 'package:t/app/model/setting_model.dart';
 import 'package:t/app/modules/acceuil/views/acceuil_view.dart';
 import 'package:t/app/modules/acceuil/views/list.dart';
@@ -13,8 +15,9 @@ class AcceuilController extends GetxController {
   // Observables
   var user = User().obs;
   var selectedIndex = 0.obs;
-List<Articles> articles =[];
-
+List<Articles> articles =[]; //Déclare une liste vide d'articles. Cette liste sera utilisée pour stocker des instances de la classe Articles.
+  int index = 0;
+  var firstAuthor = RxString('');// RxString est une classe fournie par GetX => lorsque change l'auteur le widget faire la mise a jour
   bool receivedOfferNotification = true;
 
   void toggleReceivedOfferNotification(bool value) {
@@ -24,10 +27,22 @@ List<Articles> articles =[];
   @override
   void onInit() {
     super.onInit();
-    articles =getAllArticles() as List<Articles>;
-    // Fetch requests when the controller is initialized
+    fetchAuthorAtIndex(index);
   }
-
+  void fetchAuthorAtIndex(int index) {//pour récupérer et afficher l'auteur du premier article (à l'index initial, qui est normalement 0).
+    ArticleServices.getAuthorAtIndex(index).then((value) {
+      firstAuthor.value =
+          value; // Utilisez la méthode value pour affecter la valeur
+      print(firstAuthor.value);
+      update();
+    }).catchError((error) {
+      log('Error fetching articles: $error');
+    });
+  }
+  void changeAuthor() { // Cette méthode incrémente l'index actuel (index)
+    index++; // Incrémente l'index
+    fetchAuthorAtIndex(index); // pour mettre à jour l'auteur affiché.
+  }
   // Navigation
   void onItemTapped(int index) {
     selectedIndex.value = index;
@@ -69,4 +84,13 @@ List<Articles> articles =[];
   }
 
 
-}
+}//En résumé, ces méthodes permettent de récupérer et
+// d'afficher les auteurs des articles à partir d'un service d'API,
+// en utilisant GetX pour gérer les mises à jour réactives de l'interface utilisateur.
+
+
+
+
+
+
+
