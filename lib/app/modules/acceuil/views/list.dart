@@ -26,7 +26,7 @@ class ListViewPage extends GetView<AcceuilController> {
           _buildExpansionTile(context, "event 6", Colors.blue.shade200),
         ],
       ),
-      bottomNavigationBar: GNav(
+      bottomNavigationBar: Obx(() => GNav(
         backgroundColor: Colors.blue,
         color: Colors.white,
         activeColor: Colors.black,
@@ -40,9 +40,10 @@ class ListViewPage extends GetView<AcceuilController> {
           GButton(icon: Icons.home, text: 'Home'),
           GButton(icon: Icons.list, text: 'List'),
         ],
-      ),
+      )),
     );
   }
+}
 
   Widget _buildExpansionTile(BuildContext context, String title, Color color) {
     return ExpansionTile(
@@ -64,4 +65,4 @@ class ListViewPage extends GetView<AcceuilController> {
       ],
     );
   }
-}
+

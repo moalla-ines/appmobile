@@ -1,15 +1,41 @@
-import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:t/app/modules/acceuil/controllers/acceuil_controller.dart';
-import 'package:t/app/modules/home/views/home_view.dart';
-import 'package:http/http.dart' as http;
+
 import '../../../model/Article.dart';
+import '../controllers/acceuil_controller.dart';
+
 class AcceuilView extends GetView<AcceuilController> {
   AcceuilView({Key? key}) : super(key: key);
-  var firstAuthor = ''.obs;// permet à firstAuthor d'être utilisée de manière réactive
+
+  var firstAuthor = ''.obs;
+
+  // Liste d'images
+  final List<String> images = [
+    "assets/images/Angular.png",
+    "assets/images/C++.png",
+    "assets/images/Laravel.png",
+    "assets/images/flutter.png",
+    "assets/images/java.png",
+    "assets/images/js.png",
+    "assets/images/Python-logo.png",
+    "assets/images/react.png",
+    // Ajoutez ici les chemins vers les autres images
+  ];
+
+  // Liste des noms de langage
+  final List<String> languages = [
+    "Angular",
+    "C++",
+    "Laravel",
+    "Flutter",
+    "Java",
+    "JavaScript",
+    "Python",
+    "React",
+    // Ajoutez ici les noms des autres langages
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,80 +49,71 @@ class AcceuilView extends GetView<AcceuilController> {
         ),
         backgroundColor: Colors.blue,
       ),
-      body: Stack(
-        children: [
-          Container(
-            padding: EdgeInsets.all(110),
-            margin: EdgeInsets.all(10),
-            color: Colors.blue.shade50,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Obx(() {
-                  return Text(
-                    'Username: ${controller.user.value.username}',
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.blue),
-                  );
-                }),
-                Obx(() {
-                  return Text(
-                    'Password: ${controller.user.value.password}',
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.blue),
-                  );
-                }),
-                Obx(() { // mettre à jour automatiquement l'interface
-                  return Text(
-                    'Author: ${controller.firstAuthor}',//Lorsque firstAuthor change, le widget Text est reconstruit avec la nouvelle valeur,
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        color: const Color.fromARGB(255, 243, 33, 33)),
-                  );
-                }),
-                ElevatedButton(
-                  onPressed: () {
-                    controller.changeAuthor();
-                  },
-                  child: Text('Changer d\'auteur'),
-                ),
-                Obx(() {
-                  if (controller.user.value.imagePath != null) {
-                    return Image.file(
-                      File(controller.user.value.imagePath!),
-                      width: 200,
-                      height: 200,
-                      fit: BoxFit.cover,
-                    );
-                  } else {
-                    return Container();
-                  }
-                }),
-              ],
-            ),
-          ),
-        ],
+      body: _buildGridView(),
+      bottomNavigationBar: _buildBottomNavigationBar(),
+    );
+  }
+
+  Widget _buildGridView() {
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 10.0,
+        mainAxisSpacing: 10.0,
+        childAspectRatio: 0.75,
       ),
-      bottomNavigationBar: GNav(
-        backgroundColor: Colors.blue,
-        color: Colors.white,
-        activeColor: Colors.black,
-        tabBackgroundColor: Colors.grey.shade50,
-        padding: EdgeInsets.all(20),
-        gap: 8,
-        selectedIndex: controller.selectedIndex.value,
-        onTabChange: controller.onItemTapped,
-        tabs: [
-          GButton(icon: Icons.settings, text: 'Settings'),
-          GButton(icon: Icons.home, text: 'Home'),
-          GButton(icon: Icons.list, text: 'List'),
-        ],
+      itemCount: images.length,
+      itemBuilder: (BuildContext context, int index) {
+        return _buildGridTile(index);
+      },
+    );
+  }
+
+  Widget _buildGridTile(int index) {
+    return GridTile(
+      child: Container(
+        color: Colors.blue.shade100,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                languages[index], // Utiliser le nom de langage correspondant à l'index
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                ),
+              ),
+              SizedBox(height: 10.0),
+              Image.asset(
+                images[index], // Utiliser l'image correspondant à l'index
+                width: 150.0,
+                height: 150.0,
+                fit: BoxFit.cover,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
+
+  Widget _buildBottomNavigationBar() {
+    return Obx(() => GNav(
+      backgroundColor: Colors.blue,
+      color: Colors.white,
+      activeColor: Colors.black,
+      tabBackgroundColor: Colors.grey.shade50,
+      padding: EdgeInsets.all(20),
+      gap: 8,
+      selectedIndex: controller.selectedIndex.value,
+      onTabChange: controller.onItemTapped,
+      tabs: [
+        GButton(icon: Icons.settings, text: 'Settings'),
+        GButton(icon: Icons.home, text: 'Home'),
+        GButton(icon: Icons.list, text: 'List'),
+      ],
+    ));
+  }
 }
+

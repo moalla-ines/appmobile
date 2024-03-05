@@ -168,7 +168,7 @@ class SettingsView extends GetView<AcceuilController> {
           ),
         ],
       ),
-      bottomNavigationBar: GNav(
+      bottomNavigationBar: Obx(() => GNav(
         backgroundColor: Colors.blue,
         color: Colors.white,
         activeColor: Colors.black,
@@ -182,7 +182,7 @@ class SettingsView extends GetView<AcceuilController> {
           GButton(icon: Icons.home, text: 'Home'),
           GButton(icon: Icons.list, text: 'List'),
         ],
-      ),
+      )),
     );
   }
 
