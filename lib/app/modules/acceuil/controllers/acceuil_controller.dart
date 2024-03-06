@@ -18,8 +18,9 @@ class AcceuilController extends GetxController {
 List<Articles> articles =[]; //Déclare une liste vide d'articles. Cette liste sera utilisée pour stocker des instances de la classe Articles.
   int index = 0;
   var firstAuthor = RxString('');// RxString est une classe fournie par GetX => lorsque change l'auteur le widget faire la mise a jour
-  bool receivedOfferNotification = true;
 
+  bool isLoading = true.obs.value; // Utilisation correcte pour récupérer la valeur booléenne de l'observable isLoading
+  bool receivedOfferNotification = true;
   void toggleReceivedOfferNotification(bool value) {
     receivedOfferNotification = value;
     update();
@@ -29,15 +30,21 @@ List<Articles> articles =[]; //Déclare une liste vide d'articles. Cette liste s
     super.onInit();
     fetchAuthorAtIndex(index);
   }
-  void fetchAuthorAtIndex(int index) {//pour récupérer et afficher l'auteur du premier article (à l'index initial, qui est normalement 0).
+  void fetchAuthorAtIndex(int index) {
+    //pour récupérer et afficher l'auteur du premier article (à l'index initial, qui est normalement 0).
+    isLoading = true; // Début du chargement
     ArticleServices.getAuthorAtIndex(index).then((value) {
       firstAuthor.value =
           value; // Utilisez la méthode value pour affecter la valeur
       print(firstAuthor.value);
       update();
+
     }).catchError((error) {
+
       log('Error fetching articles: $error');
+
     });
+
   }
   void changeAuthor() { // Cette méthode incrémente l'index actuel (index)
     index++; // Incrémente l'index
