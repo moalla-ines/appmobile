@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:t/app/model/model_user.dart';
 import 'package:t/app/model/services.dart';
@@ -28,7 +28,20 @@ List<Articles> articles =[]; //Déclare une liste vide d'articles. Cette liste s
   @override
   void onInit() {
     super.onInit();
+    checkConnectivityOnInit();
     fetchAuthorAtIndex(index);
+  }
+  void checkConnectivityOnInit() {
+    Connectivity().checkConnectivity().then((connectivityResult) {
+      if (connectivityResult == ConnectivityResult.none) {
+        // Aucune connexion, afficher le cercle de chargement
+        isLoading = true;
+        update();
+      } else {
+        // Connexion disponible, charger les données
+        fetchAuthorAtIndex(index);
+      }
+    });
   }
   void fetchAuthorAtIndex(int index) {
     //pour récupérer et afficher l'auteur du premier article (à l'index initial, qui est normalement 0).
@@ -38,9 +51,9 @@ List<Articles> articles =[]; //Déclare une liste vide d'articles. Cette liste s
           value; // Utilisez la méthode value pour affecter la valeur
       print(firstAuthor.value);
       update();
-
+      isLoading = false;
     }).catchError((error) {
-
+      isLoading = false;
       log('Error fetching articles: $error');
 
     });
