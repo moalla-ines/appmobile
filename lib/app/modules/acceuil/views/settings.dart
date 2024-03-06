@@ -17,13 +17,7 @@ class SettingsView extends GetView<AcceuilController> {
           "Settings",
           style: TextStyle(fontSize: 22 , color: Colors.white),
         ),
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-        ),
+
       ),
       body: Stack(
         fit: StackFit.expand,

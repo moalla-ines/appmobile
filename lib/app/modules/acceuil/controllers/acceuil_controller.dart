@@ -4,7 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:t/app/model/model_user.dart';
 import 'package:t/app/model/services.dart';
-import 'package:t/app/model/setting_model.dart';
+
 import 'package:t/app/modules/acceuil/views/acceuil_view.dart';
 import 'package:t/app/modules/acceuil/views/list.dart';
 import 'package:t/app/modules/acceuil/views/settings.dart';
@@ -70,16 +70,17 @@ List<Articles> articles =[]; //Déclare une liste vide d'articles. Cette liste s
     selectedIndex.value = index;
     switch (index) {
       case 0:
-        Get.to(() => SettingsView());
+        Get.off(() => SettingsView());
         break;
       case 1:
-        Get.to(() => AcceuilView());
+        Get.off(() => AcceuilView());
         break;
       case 2:
-        Get.to(() => ListViewPage());
+        Get.off(() => ListViewPage());
         break;
     }
   }
+
 
   // Met à jour les informations de l'utilisateur
   void updateUser(String username, String password, String imagePath) {
