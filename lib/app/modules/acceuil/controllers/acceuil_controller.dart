@@ -17,7 +17,7 @@ class AcceuilController extends GetxController {
   var selectedIndex = 0.obs;
 List<Articles> articles =[]; //Déclare une liste vide d'articles. Cette liste sera utilisée pour stocker des instances de la classe Articles.
   int index = 0;
-  var firstAuthor = RxString('');// RxString est une classe fournie par GetX => lorsque change l'auteur le widget faire la mise a jour
+  var firstAuthor = RxString('');// RxString est une classe fournie par GetX => lorsque change =l'auteur le widget faire la mise a jour
 
   bool isLoading = true.obs.value; // Utilisation correcte pour récupérer la valeur booléenne de l'observable isLoading
   bool receivedOfferNotification = true;
@@ -28,6 +28,7 @@ List<Articles> articles =[]; //Déclare une liste vide d'articles. Cette liste s
   @override
   void onInit() {
     super.onInit();
+    selectedIndex.value = 1;
     checkConnectivityOnInit();
     fetchAuthorAtIndex(index);
   }

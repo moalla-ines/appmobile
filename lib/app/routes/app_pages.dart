@@ -40,5 +40,5 @@ class AppPages {
     ),
   ];
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.ACCEUIL;
 }

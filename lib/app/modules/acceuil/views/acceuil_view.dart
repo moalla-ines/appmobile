@@ -150,6 +150,8 @@ class AcceuilView extends GetView<AcceuilController> {
       tabs: [
         GButton(icon: Icons.settings, text: 'Settings'),
         GButton(icon: Icons.home, text: 'Home'),
+
+
         GButton(icon: Icons.list, text: 'List'),
       ],
     ));
