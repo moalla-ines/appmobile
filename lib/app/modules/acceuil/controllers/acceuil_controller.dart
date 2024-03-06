@@ -43,6 +43,7 @@ List<Articles> articles =[]; //Déclare une liste vide d'articles. Cette liste s
       }
     });
   }
+
   void fetchAuthorAtIndex(int index) {
     //pour récupérer et afficher l'auteur du premier article (à l'index initial, qui est normalement 0).
     isLoading = true; // Début du chargement
